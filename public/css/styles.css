@@ -1,6 +1,339 @@
+/* Mobile-first, accessible, responsive CSS for CSE Motors */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+  color: #1a1a1a;
+  min-height: 100%;
+}
+
+.checkerboard-bg {
+  background: url('/images/site/checkerboard.jpg');
+  background-size: 40px 40px;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main-container {
+  background: #fff;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 2px 8px #0001;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 1.2rem 1rem 0.5rem 1rem;
+  background: #1a2233;
+  color: #fff;
+  border-radius: 0 0 12px 12px;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.account-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: text-decoration 0.2s;
+}
+
+.account-link:focus,
+.account-link:hover {
+  text-decoration: underline;
+  outline: 2px solid #00aaff;
+  outline-offset: 2px;
+}
+
+nav {
+  margin-top: 1rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list li {
+  flex: 1 1 40%;
+}
+
+.nav-list a {
+  display: block;
+  background: #2d3a4d;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-list a:focus,
+.nav-list a:hover {
+  background: #00aaff;
+  color: #1a2233;
+  outline: 2px solid #00aaff;
+  outline-offset: 2px;
+}
+
+main {
+  flex: 1;
+  padding: 1.2rem 1rem 0.5rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+}
+
+.delorean-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #eaf6fb;
+  border-radius: 10px;
+  padding: 1.2rem 0.5rem;
+  margin-bottom: 1.5rem;
+  gap: 1.2rem;
+}
+
+.delorean-info {
+  text-align: center;
+}
+
+.delorean-title {
+  color: #00aaff;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+.delorean-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  color: #0077cc;
+  font-size: 1rem;
+}
+
+.own-today-btn img {
+  width: 120px;
+  height: auto;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.delorean-img img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.upgrades-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.upgrades, .reviews {
+  width: 100%;
+}
+
+.upgrades h3, .reviews h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 0.8rem;
+}
+
+.upgrades-grid a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #0077cc;
+  font-size: 0.97rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.upgrades-grid a:focus,
+.upgrades-grid a:hover {
+  color: #00aaff;
+  outline: 2px solid #00aaff;
+  outline-offset: 2px;
+}
+
+.upgrades-grid img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  border: 2px solid #eaf6fb;
+  background: #fff;
+}
+
+.reviews ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.reviews li {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+footer {
+  text-align: left;
+  padding: 1.2rem 1rem 0.5rem 1rem;
+  color: #444;
+  font-size: 0.98rem;
+  background: transparent;
+}
+
+/* Responsive for larger screens */
+@media screen and (min-width: 800px) {
+  .checkerboard-bg {
+    padding: 32px 0;
+  }
+  .main-container {
+    max-width: 950px;
+    border: 4px solid #00aaff;
+    border-radius: 12px;
+    margin: 32px auto;
+    min-height: 90vh;
+  }
+  header {
+    padding: 2rem 2.5rem 1rem 2.5rem;
+    border-radius: 12px 12px 0 0;
+  }
+  .header-row {
+    font-size: 1.2rem;
+  }
+  .site-title {
+    font-size: 2.2rem;
+  }
+  .account-link {
+    font-size: 1.1rem;
+  }
+  nav {
+    margin-top: 1.5rem;
+  }
+  .nav-list {
+    gap: 1.5rem;
+    justify-content: flex-start;
+  }
+  .nav-list li {
+    flex: 0 0 auto;
+  }
+  .nav-list a {
+    font-size: 1.1rem;
+    padding: 0.9rem 2.2rem;
+  }
+  main {
+    padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .delorean-hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 2rem;
+    gap: 2.5rem;
+  }
+  .delorean-info {
+    flex: 1;
+    text-align: left;
+  }
+  .delorean-title {
+    font-size: 1.5rem;
+  }
+  .delorean-features {
+    font-size: 1.1rem;
+  }
+  .own-today-btn img {
+    width: 160px;
+  }
+  .delorean-img img {
+    width: 340px;
+    max-width: 100%;
+    margin-left: 0;
+  }
+  .upgrades-reviews {
+    flex-direction: row;
+    gap: 3.5rem;
+    margin-top: 2.5rem;
+  }
+  .upgrades, .reviews {
+    width: 50%;
+  }
+  .upgrades-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  footer {
+    padding: 1.5rem 2.5rem 1rem 2.5rem;
+    font-size: 1.05rem;
+  }
+}
+
+/* Accessibility: Focus outlines for all interactive elements */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: 2px solid #00aaff;
+  outline-offset: 2px;
 }
