@@ -76,6 +76,8 @@ header {
 
 nav {
   margin-top: 1rem;
+  display: flex;
+  justify-content: center; /* Add this line */
 }
 
 .nav-list {
@@ -85,6 +87,7 @@ nav {
   gap: 0.5rem;
   padding: 0;
   margin: 0;
+  justify-content: center; /* Add this line */
 }
 
 .nav-list li {
