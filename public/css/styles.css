@@ -142,7 +142,7 @@ h2 {
 }
 
 .delorean-title {
-  color: #00aaff;
+  color: #005580;
   font-size: 1.1rem;
   margin: 0 0 0.5rem 0;
   font-weight: 700;
@@ -152,7 +152,7 @@ h2 {
   list-style: none;
   padding: 0;
   margin: 0 0 1rem 0;
-  color: #0077cc;
+  color: #2e526b;
   font-size: 1rem;
 }
 
@@ -200,7 +200,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: #0077cc;
+  color: #35566e;
   font-size: 0.97rem;
   font-weight: 600;
   transition: color 0.2s;
@@ -208,7 +208,7 @@ h2 {
 
 .upgrades-grid a:focus,
 .upgrades-grid a:hover {
-  color: #00aaff;
+  color: #5abdee;
   outline: 2px solid #00aaff;
   outline-offset: 2px;
 }
