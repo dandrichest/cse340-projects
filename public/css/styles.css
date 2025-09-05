@@ -70,7 +70,6 @@ header {
 
 .account-link:focus,
 .account-link:hover {
-  text-decoration: underline;
   outline: 2px solid #00aaff;
   outline-offset: 2px;
 }
