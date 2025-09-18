@@ -245,6 +245,80 @@ footer {
   background: transparent;
 }
 
+/* Style the inventory grid */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+#inv-display li {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eaf6fb;
+}
+
+#inv-display li:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(44, 62, 80, 0.18);
+}
+
+#inv-display img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: 1rem auto 0.5rem auto;
+  border-radius: 8px 8px 0 0;
+}
+
+.namePrice {
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.namePrice h2 {
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.namePrice a {
+  color: #1a2233;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.namePrice a:hover,
+.namePrice a:focus {
+  color: #005580;
+}
+
+.namePrice span {
+  display: block;
+  font-weight: bold;
+  color: #444;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.notice {
+  color: #b00;
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+}
+
 /* Responsive for larger screens */
 @media screen and (min-width: 800px) {
   .checkerboard-bg {
