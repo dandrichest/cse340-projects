@@ -319,6 +319,71 @@ footer {
   font-size: 1.2rem;
 }
 
+/* ===== Vehicle Detail Layout ===== */
+.vehicle-detail {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.vehicle-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Content row: image + details */
+.vehicle-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.vehicle-image {
+  flex: 1;
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.vehicle-info {
+  flex: 1.5;
+}
+
+.vehicle-info h1 {
+  margin-top: 0;
+  font-size: 1.6em;
+}
+
+.vehicle-info p {
+  margin: 10px 0;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+
+/* Highlight the price */
+.vehicle-info .price {
+  font-size: 1.4em;
+  color: #b12704;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vehicle-content {
+    flex-direction: column;
+  }
+  .vehicle-image,
+  .vehicle-info {
+    width: 100%;
+  }
+}
+
+
 /* Responsive for larger screens */
 @media screen and (min-width: 800px) {
   .checkerboard-bg {
@@ -406,6 +471,7 @@ footer {
     padding: 1.5rem 2.5rem 1rem 2.5rem;
     font-size: 1.05rem;
   }
+  
 }
 
 /* Accessibility: Focus outlines for all interactive elements */
