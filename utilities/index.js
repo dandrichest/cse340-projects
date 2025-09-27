@@ -61,6 +61,16 @@ Util.buildClassificationGrid = async function (data) {
   return grid
 }
 
+Util.buildClassificationOptions = async function(selected = null) {
+  let data = await invModel.getClassifications();
+  let list = '<option value="">Choose a classification</option>';
+  data.rows.forEach(row => {
+    list += `<option value="${row.classification_id}"${selected == row.classification_id ? " selected" : ""}>${row.classification_name}</option>`;
+  });
+  return list;
+}
+
+
 /* **************************************
 * Build the vehicle detail view HTML
 * ************************************ */
@@ -84,6 +94,46 @@ Util.buildVehicleDetail = async function (vehicle) {
     </section>
   `
 }
+
+Util.buildInventoryList = async function(data) {
+  const inventoryDisplay = document.getElementById("inventoryDisplay");
+
+  if (!data || data.length === 0) {
+    inventoryDisplay.innerHTML = '<p>No inventory items found for this classification.</p>';
+    return;
+  }
+
+  let dataTable = '<table>';
+  dataTable += '<thead><tr><th>Vehicle Name</th><th>Modify</th><th>Delete</th></tr></thead>';
+  dataTable += '<tbody>';
+
+  data.forEach(item => {
+    dataTable += `<tr>
+      <td>${item.inv_make} ${item.inv_model}</td>
+      <td><a href='/inv/edit/${item.inv_id}'>Modify</a></td>
+      <td><a href='/inv/delete/${item.inv_id}'>Delete</a></td>
+    </tr>`;
+  });
+
+  dataTable += '</tbody></table>';
+  inventoryDisplay.innerHTML = dataTable;
+}
+
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications();
+ let classificationList = '<select name="classification_id" id="classificationList" required">';
+ classificationList += "<option value=''>Choose a Classification</option>";
+  
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}"`;
+    if (classification_id != null && row.classification_id == classification_id) {
+      classificationList += " selected";
+    }
+    classificationList += `>${row.classification_name}</option>`;
+  });
+  classificationList += "</select>";
+  return classificationList;
+};
 
 
 /* ****************************************

@@ -1,0 +1,14 @@
+  <title>Add Classification</title>
+  <h1>Add New Classification</h1>
+
+  <% if (flashMessage) { %>
+    <div class="flash-message"><%= flashMessage %></div>
+  <% } %>
+<main>
+  <form action="/inv/classification" method="POST" onsubmit="return validateForm()">
+    <label for="classification_name">Classification Name:</label>
+    <input type="text" id="classification_name" name="classification_name" required>
+    <button type="submit">Add Classification</button>
+  </form>
+  <link rel="stylesheet" href="/css/inventory.css">
+</main>
