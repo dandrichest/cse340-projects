@@ -262,6 +262,8 @@ nav {
   margin-top: 1rem;
   display: flex;
   justify-content: center; /* Add this line */
+  flex-wrap: nowrap;
+  overflow-x: auto; /* adds horizontal scroll if needed */
 }
 
 .nav-list {

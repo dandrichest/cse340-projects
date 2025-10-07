@@ -1,6 +1,12 @@
 <header>
   <div class="header-row">
-      <h1 class="site-title">CSE Motors</h1>
+    <h1 class="site-title">CSE Motors</h1>
+
+    <% if (session && session.account_firstname) { %>
+      <a href="/account/manage" class="account-link">Welcome, <%= session.account_firstname %></a>
+      <a href="/account/logout" class="logout-link">Logout</a>
+    <% } else { %>
       <a title="Click to log in" href="/account/login" class="account-link">My Account</a>
+    <% } %>
   </div>
 </header>

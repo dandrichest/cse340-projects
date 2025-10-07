@@ -26,46 +26,51 @@ async function checkExistingEmail(account_email){
   }
 }
 
-// Get account by email
-async function getAccountByEmail(email) {
+
+/* *****************************
+* Return account data using email address
+* ***************************** */
+async function getAccountByEmail (account_email) {
   try {
     const result = await pool.query(
-      'SELECT * FROM account WHERE account_email = $1',
-      [email]
-    )
+      'SELECT account_id, account_firstname, account_lastname, account_email, account_type, account_password FROM account WHERE account_email = $1',
+      [account_email])
     return result.rows[0]
   } catch (error) {
-    throw error
+    return new Error("No matching email found")
   }
 }
 
-// Insert inventory item
-async function insertInventory(vehicleData) {
+async function updateAccount(account_id, firstname, lastname, email) {
   const sql = `
-  INSERT INTO inventory (
-    inv_make, inv_model, inv_year, inv_description,
-    inv_image, inv_thumbnail, inv_price, inv_miles,
-    inv_color, classification_id
-  )
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-  RETURNING *;
-`;
+    UPDATE account
+    SET account_firstname = $1,
+        account_lastname = $2,
+        account_email = $3
+    WHERE account_id = $4
+    RETURNING *;
+  `;
+  const result = await pool.query(sql, [firstname, lastname, email, account_id]);
+  return result.rows[0];
+}
 
-const data = [
-  vehicleData.inv_make,
-  vehicleData.inv_model,
-  vehicleData.inv_year,
-  vehicleData.inv_description,
-  vehicleData.inv_image,
-  vehicleData.inv_thumbnail,
-  vehicleData.inv_price,
-  vehicleData.inv_miles,
-  vehicleData.inv_color,
-  vehicleData.classification_id
-];
+async function updatePassword(account_id, hashedPassword) {
+  const sql = `
+    UPDATE account
+    SET account_password = $1
+    WHERE account_id = $2
+    RETURNING *;
+  `;
+  const result = await pool.query(sql, [hashedPassword, account_id]);
+  return result.rows[0];
+}
 
-return await pool.query(sql, data);
+async function getAccountById(accountId) {
+  const sql = `SELECT * FROM account WHERE account_id = $1`;
+  const result = await pool.query(sql, [accountId]);
+  return result.rows[0];
 }
 
 
-module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, insertInventory}
+
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword, getAccountById}

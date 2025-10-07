@@ -9,7 +9,6 @@ const express = require("express")
 const baseController = require("./controllers/baseController")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
-const app = express()
 const static = require("./routes/static")
 const utilities = require("./utilities/")
 const inventoryRoute = require("./routes/inventoryRoute")
@@ -17,6 +16,9 @@ const errorRoute = require("./routes/errorRoute")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+
+const app = express()
 
 /* ***********************
  * View Engine and Template
@@ -41,6 +43,15 @@ app.set("layout", "layouts/layout") // not at views root
 }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+// Cookie Parser
+app.use(cookieParser())
+//process login state
+app.use(utilities.checkJWTToken)
+//global session variable
+app.use((req, res, next) => {
+  res.locals.session = req.session
+  next()
+})
 
 
 
@@ -50,6 +61,15 @@ app.use((req, res, next) => {
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
+app.use((req, res, next) => {
+  res.locals.session = req.session;
+  res.locals.showGreeting = false; // default for all views
+  next();
+});
+
+
+
 
 /* ***********************
  * Routes
@@ -72,18 +92,17 @@ app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
 //index route
-app.get("/", baseController.buildHome)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory Route
 app.use("/inv", inventoryRoute)
+app.use("/inventory", inventoryRoute)
+
+
 // Error Route
 app.use("/error", errorRoute)
 // Needed for the 500 error testing
 app.use("/error", errorRoute)
-
-
-
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -115,4 +134,5 @@ app.use((err, req, res, next) => {
     nav: req.nav // if you’re injecting nav globally
   })
 })
+
 

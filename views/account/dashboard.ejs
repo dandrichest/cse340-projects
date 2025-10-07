@@ -1,0 +1,20 @@
+  <% if (messages.success) { %>
+    <div class="flash-success"><%= messages.success %></div>
+  <% } %>
+  <% if (messages.error) { %>
+    <div class="flash-error"><%= messages.error %></div>
+  <% } %>
+<!-- Update Account Info Link (visible to all users) -->
+  <h1>Account Management</h1>
+
+  <p>You're logged in</p>
+  <a href="/account/edit">Edit Account Information</a>
+
+  <!-- Conditional Inventory Management Section -->
+<% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+  <h3>Inventory Management</h3>
+  <p>
+    <a href="/inventory/management">Access Inventory Management</a>
+  </p>
+<% } %>
+
