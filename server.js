@@ -17,6 +17,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute")
 
 const app = express()
 
@@ -77,6 +78,7 @@ app.use((req, res, next) => {
 app.use(static)
 app.use(express.static("public"))
 app.use("/account", require("./routes/accountRoute"))
+app.use(reviewRoute)
 
 /* ***********************
  * Local Server Information

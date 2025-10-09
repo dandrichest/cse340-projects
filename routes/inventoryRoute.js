@@ -7,9 +7,9 @@ const utilities = require("../utilities/")
 
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/type/:classificationId", invController.buildByClassificationId)
 // Route to build the vehicle detail view
-router.get("/detail/:invId", invController.buildDetailView);
+router.get("/detail/:invId", invController.buildDetailView)
 // intentional error route
 router.get("/trigger-error", errorController.throwError)
 // Route to build the edit inventory item view
@@ -51,7 +51,6 @@ router.post("/delete/:id", invController.authorizeInventoryAccess, invController
 
 // Public routes (no middleware)
 router.get("/classification/:id", invController.showClassification)
-router.get("/detail/:id", invController.showVehicleDetail)
 
 
 

@@ -13,10 +13,11 @@ async function getClassifications() {
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
   const sql = `
-    SELECT inv_id, inv_make, inv_model, inv_year, inv_price, inv_color
-    FROM inventory
-    WHERE classification_id = $1
-    ORDER BY inv_make, inv_model
+    SELECT i.inv_id, i.inv_make, i.inv_model, i.inv_year, i.inv_price, i.inv_color, i.inv_image, i.inv_thumbnail, c.classification_name
+    FROM inventory i
+    JOIN classification c ON i.classification_id = c.classification_id
+    WHERE i.classification_id = $1
+    ORDER BY i.inv_make, i.inv_model
   `
   const result = await pool.query(sql, [classification_id])
   return result.rows
@@ -26,20 +27,14 @@ async function getInventoryByClassificationId(classification_id) {
  *  Get vehicle by inventory id (with classification name)
  * ************************** */
 async function getVehicleById(invId) {
-  try {
-    const sql = `
-      SELECT * 
-      FROM inventory AS i
-      JOIN classification AS c
-        ON i.classification_id = c.classification_id
-      WHERE i.inv_id = $1
-    `
-    const result = await pool.query(sql, [invId])
-    return result.rows[0]
-  } catch (error) {
-    console.error("getVehicleById error:", error)
-    throw error
-  }
+  const sql = `
+    SELECT i.*, c.classification_name
+    FROM inventory i
+    JOIN classification c ON i.classification_id = c.classification_id
+    WHERE i.inv_id = $1
+  `
+  const result = await pool.query(sql, [invId])
+  return result.rows[0]
 }
 
 /* ***************************

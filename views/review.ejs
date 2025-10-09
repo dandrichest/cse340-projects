@@ -1,0 +1,42 @@
+<h1><%= title %></h1>
+
+<section>
+  <h2>Leave a Review</h2>
+  <% if (errors && errors.length) { %>
+    <ul class="alert-error">
+      <% errors.forEach(e => { %><li><%= e %></li><% }) %>
+    </ul>
+  <% } %>
+  <form method="POST" action="">
+    <label>Name: <input type="text" name="reviewer_name" value="<%= form.reviewer_name || '' %>" required></label><br>
+    <label>Rating:
+      <select name="review_rating" required>
+        <% for(let i=1; i<=5; i++) { %>
+          <option value="<%= i %>" <%= form.review_rating == i ? "selected" : "" %>><%= i %></option>
+        <% } %>
+      </select>
+    </label><br>
+    <label>Review:<br>
+      <textarea name="review_text" required><%= form.review_text || '' %></textarea>
+    </label><br>
+    <button type="submit">Submit Review</button>
+  </form>
+</section>
+
+<section>
+  <h2>Reviews</h2>
+  <% if (reviews.length === 0) { %>
+    <p>No reviews yet.</p>
+  <% } else { %>
+    <ul>
+      <% reviews.forEach(r => { %>
+        <li>
+          <strong><%= r.reviewer_name %></strong> 
+          (<%= r.review_rating %>/5) 
+          <em><%= new Date(r.review_date).toLocaleDateString() %></em><br>
+          <%= r.review_text %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
